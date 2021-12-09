@@ -1,0 +1,60 @@
+{
+	"name": "Dungeon of the Mad Mage",
+	"entrances": [1],
+	"rooms": [
+		{
+			"id": 1,
+			"name": "Yawning Portal",
+			"effect": "You gain 1 life.",
+			"exits": [2]
+		},
+		{
+			"id": 2,
+			"name": "Dungeon Level",
+			"effect": "Scry 1.",
+			"exits": [3, 4]
+		},
+		{
+			"id": 3,
+			"name": "Goblin Bazaar",
+			"effect": "Create a Treasure Token.",
+			"exits": [5]
+		},
+		{
+			"id": 4,
+			"name": "Twisted Caverns",
+			"effect": "Target creature can't attack until your next turn.",
+			"exits": [5]
+		},
+		{
+			"id": 5,
+			"name": "Lost Level",
+			"effect": "Scry 2.",
+			"exits": [6, 7]
+		},
+		{
+			"id": 6,
+			"name": "Runestone Caverns",
+			"effect": "Exile the top two cards of your library. You may play them.",
+			"exits": [8]
+		},
+		{
+			"id": 7,
+			"name": "Muiral's Graveyard",
+			"effect": "Create two 1/1 black Skeleton creature tokens.",
+			"exits": [8]
+		},
+		{
+			"id": 8,
+			"name": "Deep Mines",
+			"effect": "Scry 3.",
+			"exits": [9]
+		},
+		{
+			"id": 9,
+			"name": "Mad Wizard's Lair",
+			"effect": "Draw three cards and reveal them. You may cast one of them without paying its mana cost.",
+			"exits": []
+		}
+	]
+}

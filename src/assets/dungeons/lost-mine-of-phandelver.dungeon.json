@@ -1,0 +1,48 @@
+{
+	"name": "Lost Mine of Phandelver",
+  "entrances": [1],
+	"rooms": [
+		{
+			"id": 1,
+			"name": "Cave Entrance",
+			"effect": "Scry 1.",
+			"exits": [2, 3]
+		},
+		{
+			"id": 2,
+			"name": "Goblin Lair",
+			"effect": "Create a 1/1 red Goblin creature token.",
+			"exits": [4, 5]
+		},
+		{
+			"id": 3,
+			"name": "Mine Tunnels",
+			"effect": "Create a Treasure token.",
+			"exits": [5, 6]
+		},
+		{
+			"id": 4,
+			"name": "Storeroom",
+			"effect": "Put a +1/+1 counter on target creature.",
+			"exits": [7]
+		},
+		{
+			"id": 5,
+			"name": "Dark Pool",
+			"effect": "Each opponent loses 1 life and you gain 1 life.",
+			"exits": [7]
+		},
+		{
+			"id": 6,
+			"name": "Fungi Cavern",
+			"effect": "Target creature gets -4/-0 until your next turn.",
+			"exits": [7]
+		},
+		{
+			"id": 7,
+			"name": "Temple of Dumathoin",
+			"effect": "Draw a card.",
+			"exits": []
+		}
+	]
+}

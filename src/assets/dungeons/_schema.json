@@ -1,0 +1,49 @@
+{
+	"title": "JSON Schema for dungeon definitions",
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "The name of the dungeon"
+		},
+		"entrances": {
+			"type": "array",
+      "description": "The ids of the rooms the user can start in",
+			"minimum": 1,
+      "items": { "type": "number" }
+		},
+		"rooms": {
+      "type": "array",
+      "description": "The rooms in the dungeon",
+			"minimum": 1,
+      "items": { "$ref": "#/definitions/room" }
+		}
+	},
+	"required": ["name", "entrances", "rooms"],
+	"definitions": {
+		"room": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "number",
+					"description": "A unique identifier for the room"
+				},
+				"name": {
+					"type": "string",
+					"description": "The name of the room"
+				},
+				"effect": {
+					"type": "string",
+					"description": "The effect that triggers when the player ventures into the room"
+				},
+				"exits": {
+					"type": "array",
+					"description": "The ids of rooms the player can venture to",
+					"items": { "type": "number" }
+				}
+			},
+			"required": ["name", "effect", "exits"]
+		}
+	}
+}
