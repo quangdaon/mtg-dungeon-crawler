@@ -1,5 +1,6 @@
 {
 	"name": "Dungeon of the Mad Mage",
+	"slug": "dungeon-of-the-mad-mage",
 	"entrances": [1],
 	"rooms": [
 		{

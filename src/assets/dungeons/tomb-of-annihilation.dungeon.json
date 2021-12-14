@@ -1,5 +1,6 @@
 {
 	"name": "Tomb of Annihilation",
+	"slug": "tomb-of-annihilation",
 	"entrances": [1],
 	"rooms": [
 		{

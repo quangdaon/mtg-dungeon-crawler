@@ -7,6 +7,10 @@
 			"type": "string",
 			"description": "The name of the dungeon"
 		},
+		"slug": {
+			"type": "string",
+			"description": "The slug/identifier of the dungeon"
+		},
 		"entrances": {
 			"type": "array",
       "description": "The ids of the rooms the user can start in",
