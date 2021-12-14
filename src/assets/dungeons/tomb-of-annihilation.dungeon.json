@@ -1,6 +1,7 @@
 {
 	"name": "Tomb of Annihilation",
 	"slug": "tomb-of-annihilation",
+	"image": "/card-images/tomb-of-annihilation.png",
 	"entrances": [1],
 	"rooms": [
 		{

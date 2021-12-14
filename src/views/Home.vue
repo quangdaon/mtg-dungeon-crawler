@@ -2,7 +2,13 @@
 	<div class="home">
 		<div class="dungeon-list">
 			<div class="dungeon-card" v-for="dungeon in dungeons" :key="dungeon.slug">
-				<div class="dungeon-card-content dungeon-card-placeholder">
+				<div
+					v-if="dungeon.image"
+					class="dungeon-card-content dungeon-card-image"
+				>
+					<img :src="dungeon.image" :alt="dungeon.name" />
+				</div>
+				<div v-else class="dungeon-card-content dungeon-card-placeholder">
 					{{ dungeon.name }}
 				</div>
 			</div>
@@ -36,7 +42,7 @@ export default defineComponent({
 	&-list {
 		display: flex;
 	}
-	
+
 	&-card {
 		position: relative;
 		width: 300px;
@@ -52,6 +58,15 @@ export default defineComponent({
 			left: 0;
 			bottom: 0;
 			right: 0;
+		}
+
+		&-image {
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 		}
 
 		&-placeholder {

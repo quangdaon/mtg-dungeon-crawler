@@ -1,6 +1,7 @@
 {
 	"name": "Dungeon of the Mad Mage",
 	"slug": "dungeon-of-the-mad-mage",
+	"image": "/card-images/dungeon-of-the-mad-mage.png",
 	"entrances": [1],
 	"rooms": [
 		{

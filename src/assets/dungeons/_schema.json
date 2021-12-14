@@ -11,6 +11,10 @@
 			"type": "string",
 			"description": "The slug/identifier of the dungeon"
 		},
+		"image": {
+			"type":"string",
+			"description": "The path to the preview image"
+		},
 		"entrances": {
 			"type": "array",
       "description": "The ids of the rooms the user can start in",
@@ -24,7 +28,7 @@
       "items": { "$ref": "#/definitions/room" }
 		}
 	},
-	"required": ["name", "entrances", "rooms"],
+	"required": ["name", "slug", "entrances", "rooms"],
 	"definitions": {
 		"room": {
 			"type": "object",

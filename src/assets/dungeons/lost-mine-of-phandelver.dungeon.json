@@ -1,6 +1,7 @@
 {
 	"name": "Lost Mine of Phandelver",
 	"slug": "lost-mine-of-phandelver",
+	"image": "/card-images/lost-mine-of-phandelver.png",
   "entrances": [1],
 	"rooms": [
 		{
