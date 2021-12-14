@@ -18,6 +18,8 @@ export const loadDefaults = async () => {
 	];
 
 	for (const slug of dungeonSlugs) {
+		if (dungeons.some(e => e.slug === slug)) continue;
+		
 		const { default: dungeon } = await import(
 			`@/assets/dungeons/${slug}.dungeon.json`
 		);

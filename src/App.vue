@@ -2,4 +2,8 @@
 	<router-view />
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+body {
+	font-family: sans-serif;
+}
+</style>
