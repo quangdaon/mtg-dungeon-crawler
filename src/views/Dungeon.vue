@@ -22,7 +22,9 @@
 				</div>
 			</button>
 			<button class="room-next" v-if="!nextRooms" @click="exitDungeon">
-				<h3>Exit Dungeon</h3>
+				<div class="room-text">
+					<h3>Exit Dungeon</h3>
+				</div>
 			</button>
 		</div>
 	</div>
@@ -191,8 +193,8 @@ button {
 			clip-path: polygon(
 				0 0,
 				calc(50% - ($door-width / 2)) 0,
-				calc(50% - ($door-width / 2)) $wall-width,
-				calc(50% + ($door-width / 2)) $wall-width,
+				calc(50% - ($door-width / 2)) calc($wall-width + 0.25em),
+				calc(50% + ($door-width / 2)) calc($wall-width + 0.25em),
 				calc(50% + ($door-width / 2)) 0,
 				100% 0,
 				100% 100%,
