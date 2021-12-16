@@ -1,17 +1,24 @@
 <template>
 	<div class="home">
 		<div class="dungeon-list">
-			<div class="dungeon-card" v-for="dungeon in dungeons" :key="dungeon.slug">
-				<div
-					v-if="dungeon.image"
-					class="dungeon-card-content dungeon-card-image"
-				>
-					<img :src="dungeon.image" :alt="dungeon.name" />
+			<router-link
+				class="dungeon-link"
+				v-for="dungeon in dungeons"
+				:key="dungeon.slug"
+				:to="{ name: DungeonRoute, params: { slug: dungeon.slug } }"
+			>
+				<div class="dungeon-card">
+					<div
+						v-if="dungeon.image"
+						class="dungeon-card-content dungeon-card-image"
+					>
+						<img :src="dungeon.image" :alt="dungeon.name" />
+					</div>
+					<div v-else class="dungeon-card-content dungeon-card-placeholder">
+						{{ dungeon.name }}
+					</div>
 				</div>
-				<div v-else class="dungeon-card-content dungeon-card-placeholder">
-					{{ dungeon.name }}
-				</div>
-			</div>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -20,6 +27,7 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { DungeonService } from '@/services';
 import { Dungeon } from '@/models';
+import { DungeonRoute } from '@/router';
 
 export default defineComponent({
 	name: 'Home',
@@ -28,11 +36,10 @@ export default defineComponent({
 
 		onMounted(async () => {
 			await DungeonService.loadDefaults();
-
 			dungeons.value = DungeonService.getAll();
 		});
 
-		return { dungeons };
+		return { dungeons, DungeonRoute };
 	}
 });
 </script>
