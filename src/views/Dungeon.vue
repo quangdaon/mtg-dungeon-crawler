@@ -1,31 +1,62 @@
 <template>
-	<div class="dungeon-grid" v-if="currentRoom !== null">
-		<button class="room-return" v-if="returnRoom !== null" @click="goBack">
-			Return to <span>{{ returnRoom.name }}</span>
-		</button>
-		<div class="room room-current">
-			<div class="room-text">
-				<h3>{{ currentRoom.name }}</h3>
-				<p>{{ currentRoom.effect }}</p>
+	<div
+		class="dungeon"
+		v-if="currentRoom !== null"
+		@mousemove="mouseMove"
+		@mouseup="endDrag"
+		@touchmove="mouseMove"
+		@touchend="endDrag"
+	>
+		<div class="dungeon-grid">
+			<button class="room-return" v-if="returnRoom !== null" @click="goBack">
+				Return to <span>{{ returnRoom.name }}</span>
+			</button>
+			<div class="room room-current">
+				<div class="room-text">
+					<h3>{{ currentRoom.name }}</h3>
+					<p>{{ currentRoom.effect }}</p>
+				</div>
+			</div>
+			<div class="room-exits">
+				<button
+					class="room room-next"
+					v-for="room in nextRooms"
+					:key="room.id"
+					@click="proceedTo(room.id)"
+				>
+					<div class="room-text">
+						<h3>{{ room.name }}</h3>
+						<p>{{ room.effect }}</p>
+					</div>
+				</button>
+				<button class="room-next" v-if="!nextRooms" @click="exitDungeon">
+					<div class="room-text">
+						<h3>Exit Dungeon</h3>
+					</div>
+				</button>
 			</div>
 		</div>
-		<div class="room-exits">
-			<button
-				class="room room-next"
-				v-for="room in nextRooms"
-				:key="room.id"
-				@click="proceedTo(room.id)"
-			>
-				<div class="room-text">
-					<h3>{{ room.name }}</h3>
-					<p>{{ room.effect }}</p>
-				</div>
+
+		<div
+			ref="inventory"
+			class="inventory"
+			:style="{ '--top-position': inventoryPosition + 'px' }"
+			@mousedown="startDrag"
+			@touchstart="startDrag"
+		>
+			<div class="inventory-title">Inventory:</div>
+			<button class="inventory-item" v-if="nextRooms" @click="exitDungeon">
+				<div class="inventory-icon">🏠</div>
+				<div class="inventory-label">Teleport</div>
 			</button>
-			<button class="room-next" v-if="!nextRooms" @click="exitDungeon">
-				<div class="room-text">
-					<h3>Exit Dungeon</h3>
-				</div>
+			<button class="inventory-item" v-if="dungeon.image" @click="mapOpen = true">
+				<div class="inventory-icon">🗺️</div>
+				<div class="inventory-label">Map</div>
 			</button>
+		</div>
+
+		<div class="map" v-if="mapOpen" @click="mapOpen = false">
+			<img :src="dungeon.image" alt="">
 		</div>
 	</div>
 </template>
@@ -37,10 +68,23 @@ import { DungeonService } from '@/services';
 import { onMounted, defineComponent, ref, computed, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 
+interface InventoryPositionCalculation {
+	anchor: number;
+	mousePosition: number;
+	storedPosition: number;
+}
+
 export default defineComponent({
 	setup() {
+		const invPositionCalc = reactive<InventoryPositionCalculation>({
+			anchor: null,
+			mousePosition: null,
+			storedPosition: window.innerHeight / 2
+		});
+		const inventory = ref();
 		const route = useRoute();
 		const dungeon = ref<Dungeon>(null);
+		const mapOpen = ref(false);
 		const currentRoom = ref<Room>(null);
 		const roomHistory = reactive<number[]>([]);
 
@@ -69,7 +113,38 @@ export default defineComponent({
 			return exits.map(e => getRoom(e));
 		});
 
+		const inventoryPosition = computed<number>(() => {
+			if (invPositionCalc.anchor === null)
+				return invPositionCalc.storedPosition;
+
+			const diff = invPositionCalc.mousePosition - invPositionCalc.anchor;
+
+			const target = invPositionCalc.storedPosition + diff;
+
+			const max = window.innerHeight - inventory.value.offsetHeight;
+
+			return Math.max(Math.min(target, max), 0);
+		});
+
 		const exitDungeon = () => router.push({ name: HomeRoute });
+
+		const startDrag = (e: MouseEvent | TouchEvent) => {
+			const pos = e instanceof MouseEvent ? e.clientY : e.touches[0].screenY;
+			invPositionCalc.mousePosition = pos;
+			invPositionCalc.anchor = pos;
+			document.body.classList.add('disable-refresh');
+		};
+
+		const endDrag = () => {
+			invPositionCalc.storedPosition = inventoryPosition.value;
+			invPositionCalc.anchor = null;
+			document.body.classList.remove('disable-refresh');
+		};
+
+		const mouseMove = (e: MouseEvent | TouchEvent) => {
+			invPositionCalc.mousePosition =
+				e instanceof MouseEvent ? e.clientY : e.touches[0].screenY;
+		};
 
 		onMounted(() => {
 			const slug = route.params.slug as string;
@@ -86,12 +161,21 @@ export default defineComponent({
 		});
 
 		return {
+			dungeon,
+			mapOpen,
+
 			currentRoom,
 			returnRoom,
 			nextRooms,
 			proceedTo,
 			goBack,
-			exitDungeon
+			exitDungeon,
+
+			inventory,
+			inventoryPosition,
+			startDrag,
+			endDrag,
+			mouseMove
 		};
 	}
 });
@@ -208,6 +292,58 @@ button {
 		&:last-child::before {
 			border-right-width: 0;
 		}
+	}
+}
+
+.inventory {
+	position: absolute;
+	right: 0;
+	top: var(--top-position);
+	&-title {
+		text-align: center;
+		margin-bottom: 1em;
+		font-size: 0.875em;
+	}
+	&-item {
+		position: relative;
+		width: 6em;
+		height: 6em;
+		border: 0.25em solid #000;
+		background: #fff;
+		display: block;
+	}
+	&-icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 4em;
+	}
+	&-label {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		font-weight: bold;
+		transform: translate(-50%, -50%);
+		text-shadow: 0 0 0.25em #fff;
+	}
+}
+
+.map {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 5 / 7;
 	}
 }
 </style>
