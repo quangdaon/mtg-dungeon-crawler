@@ -48,15 +48,22 @@ export default defineComponent({
 .dungeon {
 	&-list {
 		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	&-link {
+		display: block;
+		margin: 1em;
+		flex: 0 1 300px;
 	}
 
 	&-card {
+		width: 100%;
 		position: relative;
-		width: 300px;
 		aspect-ratio: 5 / 7;
 		box-shadow: 5px 5px 12px rgba(#000, 0.2);
 		border-radius: 4.75% / 3.5%;
-		margin: 0 1em;
 		overflow: hidden;
 
 		&-content {
