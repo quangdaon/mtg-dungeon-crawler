@@ -1,4 +1,4 @@
-# Magic: the Gatherin Dungeon Crawler
+# Magic: the Gathering Dungeon Crawler
 
 Source code for <http://mtg-dungeons.quangdao.com>.
 
