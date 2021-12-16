@@ -106,7 +106,7 @@ export default defineComponent({
 		bottom: 0;
 		left: 0;
 		overflow: hidden;
-		background: #c3bfbc;
+		background-color: #c3bfbc;
 	}
 }
 
@@ -146,7 +146,11 @@ button {
 			left: 0;
 			right: 0;
 			height: 1em;
-			background: radial-gradient(ellipse at top, $light-tint 0, rgba($light-tint, 0) 50%);
+			background: radial-gradient(
+				ellipse at top,
+				$light-tint 0,
+				rgba($light-tint, 0) 50%
+			);
 			overflow: visible;
 		}
 		&::after {
@@ -169,14 +173,37 @@ button {
 	}
 
 	&-next {
+		position: relative;
 		flex: 1 1 0;
 		background: transparent;
-		border: 0 solid #443a31;
-		border-width: 20px 10px 0;
-		&:first-child {
+		border: none;
+		&::before {
+			$door-width: 12vw;
+			$wall-width: 1em;
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			border: 0 solid #443a31;
+			border-width: ($wall-width) calc($wall-width / 2) 0;
+			clip-path: polygon(
+				0 0,
+				calc(50% - ($door-width / 2)) 0,
+				calc(50% - ($door-width / 2)) $wall-width,
+				calc(50% + ($door-width / 2)) $wall-width,
+				calc(50% + ($door-width / 2)) 0,
+				100% 0,
+				100% 100%,
+				0 100%,
+				0 0
+			);
+		}
+		&:first-child::before {
 			border-left-width: 0;
 		}
-		&:last-child {
+		&:last-child::before {
 			border-right-width: 0;
 		}
 	}
