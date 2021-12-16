@@ -1,5 +1,9 @@
 <template>
 	<div class="home">
+		<header class="header">
+			<h1>Magic: the Gathering</h1>
+			<h1>Dungeon Crawler</h1>
+		</header>
 		<div class="dungeon-list">
 			<router-link
 				class="dungeon-link"
@@ -63,6 +67,19 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.header {
+	padding: 0 1em;
+	margin: 2em 0 1em;
+	text-align: center;
+	h1 {
+		font-size: 2em;
+		margin: 0;
+	}
+	h2 {
+		font-size: 1.75em;
+		margin: 0;
+	}
+}
 .dungeon {
 	&-list {
 		display: flex;
