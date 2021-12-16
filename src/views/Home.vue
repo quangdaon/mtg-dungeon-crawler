@@ -32,7 +32,7 @@
 				<a
 					target="_blank"
 					href="https://github.com/quangdaon/mtg-dungeon-crawler"
-					>GitHub</a
+					>GitHub Repo</a
 				>
 			</p>
 			<p class="disclaimer">

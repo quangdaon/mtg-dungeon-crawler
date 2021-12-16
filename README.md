@@ -1,4 +1,6 @@
-# mtg-dungeon-crawler
+# Magic: the Gatherin Dungeon Crawler
+
+Source code for <http://mtg-dungeons.quangdao.com>.
 
 ## Project setup
 ```
