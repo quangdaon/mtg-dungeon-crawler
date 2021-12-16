@@ -335,7 +335,7 @@ button {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: #000;
+	background: rgba(#000, 0.75);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -343,7 +343,8 @@ button {
 	img {
 		display: block;
 		width: 100%;
-		aspect-ratio: 5 / 7;
+		height: 100%;
+		object-fit: contain;
 	}
 }
 </style>
