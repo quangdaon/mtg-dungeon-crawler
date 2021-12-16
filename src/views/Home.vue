@@ -20,6 +20,24 @@
 				</div>
 			</router-link>
 		</div>
+		<footer class="footer">
+			<p>
+				Created by
+				<a target="_blank" href="https://www.quangdao.com/">Quangdao Nguyen</a>
+				|
+				<a
+					target="_blank"
+					href="https://github.com/quangdaon/mtg-dungeon-crawler"
+					>GitHub</a
+				>
+			</p>
+			<p class="disclaimer">
+				<b>Magic: the Gathering</b> and <b>Dungeons & Dragons</b> are copyright
+				Wizards of the Coast, LLC, a subsidiary of Hasbro, Inc. This application
+				is unofficial fan content permitted under the Wizards of the Coast Fan
+				Content Policy and is not affiliated with Wizards of the Coast.
+			</p>
+		</footer>
 	</div>
 </template>
 
@@ -91,6 +109,22 @@ export default defineComponent({
 			text-align: center;
 			font-size: 2em;
 			padding: 1em;
+		}
+	}
+}
+
+.footer {
+	margin: 1em auto 0;
+	text-align: center;
+	padding: 0 1em;
+	@media (min-width: 600px) {
+		max-width: 50%;
+	}
+	p {
+		line-height: 1.2;
+		&.disclaimer {
+			font-size: 0.75em;
+			font-style: italic;
 		}
 	}
 }
