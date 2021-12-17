@@ -49,14 +49,18 @@
 				<div class="inventory-icon">🏠</div>
 				<div class="inventory-label">Teleport</div>
 			</button>
-			<button class="inventory-item" v-if="dungeon.image" @click="mapOpen = true">
+			<button
+				class="inventory-item"
+				v-if="dungeon.image"
+				@click="mapOpen = true"
+			>
 				<div class="inventory-icon">🗺️</div>
 				<div class="inventory-label">Map</div>
 			</button>
 		</div>
 
 		<div class="map" v-if="mapOpen" @click="mapOpen = false">
-			<img :src="dungeon.image" alt="">
+			<img :src="dungeon.image" :alt="dungeon.name" />
 		</div>
 	</div>
 </template>
@@ -339,7 +343,7 @@ button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
+
 	img {
 		display: block;
 		width: 100%;
