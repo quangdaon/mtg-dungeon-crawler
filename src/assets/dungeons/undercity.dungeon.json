@@ -1,0 +1,62 @@
+{
+  "name": "Undercity",
+  "slug": "undercity",
+	"image": "/card-images/undercity.png",
+  "entrances": [1],
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Secret Entrance",
+      "effect": "Search your library for a basic land card, reveal it, put it into your hand, then shuffle",
+      "exits": [2, 3]
+    },
+    {
+      "id": 2,
+      "name": "Forge",
+      "effect": "Put two +1/+1 counters on target creature.",
+      "exits": [4, 5]
+    },
+    {
+      "id": 3,
+      "name": "Lost Well",
+      "effect": "Scry 2.",
+      "exits": [5, 6]
+    },
+    {
+      "id": 4,
+      "name": "Trap!",
+      "effect": "Target player loses 5 life.",
+      "exits": [7]
+    },
+    {
+      "id": 5,
+      "name": "Arena",
+      "effect": "Goad target creature.",
+      "exits": [7, 8]
+    },
+    {
+      "id": 6,
+      "name": "Stash",
+      "effect": "Create a Treasure token.",
+      "exits": [8]
+    },
+    {
+      "id": 7,
+      "name": "Archives",
+      "effect": "Draw a card.",
+      "exits": [9]
+    },
+    {
+      "id": 8,
+      "name": "Catacombs",
+      "effect": "Create a 4/1 black Skeleton creature token with menace.",
+      "exits": [9]
+    },
+    {
+      "id": 9,
+      "name": "Throne of the Dead Three",
+      "effect": "Reveal the top ten cards of your library. Put a creature card from among them onto the battlefield with three +1/+1 counters on it. It gains hexproof until your next turn. Then shuffle.",
+      "exits": []
+    }
+  ]
+}

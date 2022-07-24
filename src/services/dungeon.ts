@@ -16,7 +16,8 @@ export const loadDefaults = async () => {
 	const dungeonSlugs = [
 		'dungeon-of-the-mad-mage',
 		'lost-mine-of-phandelver',
-		'tomb-of-annihilation'
+		'tomb-of-annihilation',
+		'undercity'
 	];
 
 	for (const slug of dungeonSlugs) {
