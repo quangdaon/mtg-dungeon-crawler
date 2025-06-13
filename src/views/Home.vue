@@ -26,9 +26,9 @@
 		</div>
 		<footer class="footer">
 			<p>
-				Created by
-				<a target="_blank" href="https://www.quangdao.com/">Quangdao Nguyen</a>
-				|
+				A <a href="https://www.johnnywubrg.com">Johnny Wubrg</a> catastrophe by
+				<a target="_blank" href="https://www.quangdao.com/">Quangdao Nguyen</a>.
+				All rights reserved. |
 				<a
 					target="_blank"
 					href="https://github.com/quangdaon/mtg-dungeon-crawler"
