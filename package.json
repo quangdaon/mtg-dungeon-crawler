@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npx cross-env NODE_OPTIONS='--openssl-legacy-provider' npm run serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "start": "npm run serve",
+    "serve": "npx cross-env NODE_OPTIONS='--openssl-legacy-provider' vue-cli-service serve",
+    "build": "npx cross-env NODE_OPTIONS='--openssl-legacy-provider' vue-cli-service build",
+    "lint": "npx cross-env NODE_OPTIONS='--openssl-legacy-provider' vue-cli-service lint"
   },
   "dependencies": {
     "register-service-worker": "^1.7.1",
